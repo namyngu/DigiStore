@@ -18,6 +18,11 @@ namespace MonashApp.Models
         public string Email { get; set; }
 
         [Required]
+        [StringLength(30, ErrorMessage = "Subject cannot be greater than 30 characters.")]
+        [Display(Name = "Subject")]
+        public string Subject { get; set; }
+
+        [Required]
         [StringLength(500, ErrorMessage = "Message must be between 10-500 characters!", MinimumLength = 10)]
         [Display(Name = "Message")]
         public string Message { get; set; }

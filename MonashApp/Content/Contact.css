@@ -1,13 +1,4 @@
-﻿/*
-.container{
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: left;
-  justify-content: left;
-}
-*/
-.emailForm {
+﻿.emailForm {
     background: #fff;
     display: flex;
     flex-direction: column;
@@ -23,7 +14,7 @@ form h4 {
     margin-bottom: 20px;
 }
 
-form input, form textarea {
+.form-input {
     border: 0;
     margin: 10px 0;
     padding: 20px;
@@ -36,11 +27,11 @@ form input, form textarea {
     padding: 15px;
     background: #ff5361;
     color: #fff;
-    font-size: 18px;
+    font-size: 14px;
     border: 0;
     outline: none;
     cursor: pointer;
-    width: 150px;
+    width: 100px;
     margin: 20px 0 0;
     border-radius: 30px;
 }
