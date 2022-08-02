@@ -23,8 +23,10 @@ namespace MonashApp.Models
         public string Subject { get; set; }
 
         [Required]
-        [StringLength(500, ErrorMessage = "Message must be between 10-500 characters!", MinimumLength = 10)]
+        [StringLength(500, ErrorMessage = "Message must be between 5-500 characters!", MinimumLength = 5)]
         [Display(Name = "Message")]
         public string Message { get; set; }
+
+        public HttpPostedFileBase File { get; set; }
     }
 }
