@@ -1,0 +1,41 @@
+﻿.row
+{
+    margin-top: 0;
+    padding-left: 11%;
+    padding-right: 11%;
+}
+
+.header-search {
+    margin-top: 20%;
+}
+
+.header-search form[name=productsearch] {
+    border: solid 1px #888;
+    border-radius: 11px;
+    z-index: 1;
+    padding: 5px;
+    box-shadow: 2px 3px 5px #888;
+}
+
+.ajax_search {
+    height: 45px;
+    max-width: 100%;
+    border: none;
+    border-color: transparent;
+}
+
+.btn-default {
+    color: #f01265;
+    background-color: white;
+    border-color: transparent;
+}
+
+.navbar {
+    max-height: 75px;
+}
+
+ul.searchbar {
+    margin-left: 100px;
+    margin-right: 100px;
+    width: 50%;
+}
