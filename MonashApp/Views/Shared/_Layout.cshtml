@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - DigiStore Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/LayoutStyle.css" rel="stylesheet" />
@@ -11,11 +11,11 @@
 
 </head>
 <body>
-    <div class="row row page-header">
+    <div class="row page-header">
         <div class="col-xs-12 col-sm-4 wrapper-logo text-center">
             <a href="/" title="DigiStore">
                 <div class="logo-image">
-                    <img src="~/Images/Logo/DigiStore-crop.jpeg" class="img-responsive">
+                    <img src="~/Images/Logo/DigiStore-logo.png" class="img-responsive">
                 </div>
             </a>
         </div>
@@ -27,7 +27,7 @@
                          <input class="form-control ajax_search" id="name_search" autocomplete="off" name="kw" type="text"
                                 placeholder="Search..." nsearch-init="yes" nsearch-id="0" />
                          <span class="input-group-btn">
-                             <button type="submit" value="Search" class="btn btn-default">
+                             <button type="submit" value="Search" class="btn btn-search">
                                  <i class="fa fa-search"></i>
                              </button>
                          </span>
@@ -36,19 +36,28 @@
              </div>
         </div>
     </div>
-    <div class="navbar navbar-inverse">
+    <div class="navbar">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><a href="@Url.Action("Index","Home")" class="navlinks">Category <i class="fa fa-caret-down "></i></a>
+                        <div class="sub-menu-1">
+                            <ul>
+                                <li><a href="#">Cables</a></li>
+                                <li><a href="#">Cases</a></li>
+                                <li><a href="#">Cooling</a></li>
+                                <li><a href="#">CPUs</a></li>
+                                <li><a href="#">Fans & Accessories</a></li>
+                                <li><a href="#">Graphics Cards</a></li>
+                                <li><a href="#">Hard Drives & SSDs</a></li>
+                                <li><a href="#">Memory</a></li>
+                                <li><a href="#">Monitors</a></li>
+                                <li><a href="#">Motherboards</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="@Url.Action("Contact","Home")" class="navlinks">Contact Us<i class="fa fa-phone"></i></a></li>
+                    <li><a href="@Url.Action("Index","Home")" class="navlinks"><i class="fa fa-shopping-cart"></i></a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Account", "Details", "Customers")</li>
