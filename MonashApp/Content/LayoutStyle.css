@@ -1,8 +1,18 @@
-﻿.row
+﻿.body{
+    box-sizing: border-box;
+    text-decoration: none;
+    color: black;
+}
+
+.row
 {
     margin-top: 0;
     padding-left: 11%;
     padding-right: 11%;
+}
+
+.logo-image{
+    width: fit-content;
 }
 
 .header-search {
@@ -24,18 +34,96 @@
     border-color: transparent;
 }
 
+ul.searchbar {
+    margin-left: 100px;
+    margin-right: 100px;
+    width: 50%;
+}
+
 .btn-default {
+    color: white;
+    background-color: #ff8080;
+    border-color: transparent;
+}
+
+.btn-search {
     color: #f01265;
     background-color: white;
     border-color: transparent;
 }
 
 .navbar {
-    max-height: 75px;
+    max-height: 100px;
+    text-align: center;
+    z-index: 99;
 }
 
-ul.searchbar {
-    margin-left: 100px;
-    margin-right: 100px;
-    width: 50%;
+.navbar ul{
+    display: inline-flex;
+    list-style: none;
 }
+
+.navbar-collapse{
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.navbar .fa {
+    margin-left: 8px;
+}
+
+a
+{
+    text-decoration: none;
+    color: black;
+}
+
+.nav > li > a:hover {
+    background: #f58e90;
+    border-radius: 3px;
+}
+
+
+
+a#registerlink {
+    color: black;
+}
+
+ul {
+    padding-left: 0;
+}
+
+.sub-menu-1{
+    display: none;
+}
+
+.nav li:hover .sub-menu-1 {
+    display: block;
+    position: absolute;
+    background: #fcfcfc;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+.nav li:hover .sub-menu-1 ul {
+    display: block;
+    margin: 10px;
+}
+
+.nav li:hover .sub-menu-1 ul li {
+    width: 150px;
+    padding: 10px;
+    border-bottom: 1px dotted #f01265;
+    border-radius: 0;
+    text-align: left;
+    text-decoration: none;
+    color: black;
+}
+
+.nav li:hover .sub-menu-1 ul li:last-child{
+    border-bottom: none;
+}
+
+
