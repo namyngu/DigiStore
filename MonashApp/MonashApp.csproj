@@ -196,6 +196,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208110219378_init.cs" />
+    <Compile Include="Migrations\202208110219378_init.designer.cs">
+      <DependentUpon>202208110219378_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HomeViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -205,9 +210,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-MonashApp-20220731105842.mdf" />
-    <Content Include="App_Data\aspnet-MonashApp-20220731105842_log.ldf">
-      <DependentUpon>aspnet-MonashApp-20220731105842.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -288,6 +290,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202208110219378_init.resx">
+      <DependentUpon>202208110219378_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
