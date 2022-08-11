@@ -40,7 +40,8 @@
         <div class="container">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="@Url.Action("Index","Home")" class="navlinks">Category <i class="fa fa-caret-down "></i></a>
+                    <li>
+                        <a href="@Url.Action("Index","Home")" class="navlinks">Category <i class="fa fa-caret-down "></i></a>
                         <div class="sub-menu-1">
                             <ul>
                                 <li><a href="#">Cables</a></li>
@@ -61,6 +62,12 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Account", "Details", "Customers")</li>
+
+                        if (User.Identity.AuthenticationType.Equals("admin"))
+                        {
+                            <li>@Html.ActionLink("Products", "Index", "Product")</li>
+                        }
+
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

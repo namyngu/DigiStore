@@ -189,13 +189,24 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Context\BrandContext.cs" />
+    <Compile Include="Context\CustomerReviewContext.cs" />
+    <Compile Include="Context\DiscountContext.cs" />
     <Compile Include="Context\MainCategoryContext.cs" />
+    <Compile Include="Context\OrderContext.cs" />
+    <Compile Include="Context\OrderDetailContext.cs" />
     <Compile Include="Context\ProductContext.cs" />
     <Compile Include="Context\SubCategoryContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BrandController.cs" />
+    <Compile Include="Controllers\CustomerReviewController.cs" />
+    <Compile Include="Controllers\DiscountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainCategoryController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderDetailController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SubCategoryController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
@@ -223,6 +234,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProjectRole.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -295,10 +307,17 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\SubCategory\Index.cshtml" />
     <Content Include="Views\MainCategory\Index.cshtml" />
+    <Content Include="Views\CustomerReview\Index.cshtml" />
+    <Content Include="Views\Brand\Index.cshtml" />
+    <Content Include="Views\OrderDetail\Index.cshtml" />
+    <Content Include="Views\Discount\Index.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
     <Folder Include="UploadedFiles\" />
+    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\AspNetUsers_Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
