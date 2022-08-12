@@ -9,7 +9,7 @@ namespace MonashApp.Controllers
 {
     public class CustomerReviewController : Controller
     {
-        DigiStoreModels db = new DigiStoreModels();
+        DigiStoreDBContext db = new DigiStoreDBContext();
 
         // GET: CustomerReview
         public ActionResult Index()

@@ -297,6 +297,10 @@
     <Content Include="Views\Brand\Create.cshtml" />
     <Content Include="Views\Brand\Edit.cshtml" />
     <Content Include="Views\Brand\Delete.cshtml" />
+    <Content Include="Views\MainCategory\Create.cshtml" />
+    <Content Include="Views\MainCategory\Index.cshtml" />
+    <Content Include="Views\MainCategory\Edit.cshtml" />
+    <Content Include="Views\SubCategory\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -306,11 +310,9 @@
     <Folder Include="Views\AspNetUsers_Admin\" />
     <Folder Include="Views\CustomerReview\" />
     <Folder Include="Views\Discount\" />
-    <Folder Include="Views\MainCategory\" />
     <Folder Include="Views\OrderDetail\" />
     <Folder Include="Views\Order\" />
     <Folder Include="Views\Product\" />
-    <Folder Include="Views\SubCategory\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
