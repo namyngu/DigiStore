@@ -11,5 +11,9 @@ namespace MonashApp.Context
     {
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+
+        public System.Data.Entity.DbSet<MonashApp.Models.Discount> Discounts { get; set; }
+
+        public System.Data.Entity.DbSet<MonashApp.Models.Product> Products { get; set; }
     }
 }

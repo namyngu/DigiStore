@@ -1,4 +1,5 @@
 ﻿using MonashApp.Context;
+using MonashApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,22 +27,24 @@ namespace MonashApp.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
+            ProductContext db = new ProductContext();
             return View();
         }
 
         // POST: Product/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Product product)
         {
             try
             {
-                // TODO: Add insert logic here
+                db.Products.Add(product);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(product);
             }
         }
 

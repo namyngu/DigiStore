@@ -1,4 +1,5 @@
 ﻿using MonashApp.Context;
+using MonashApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,33 +32,38 @@ namespace MonashApp.Controllers
 
         // POST: Brand/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Brand brand)
         {
             try
             {
-                // TODO: Add insert logic here
+                db.Brands.Add(brand);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(brand);
             }
         }
 
         // GET: Brand/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var brand = db.Brands.Where(b => b.Id == id).FirstOrDefault();
+
+            return View(brand);
         }
 
         // POST: Brand/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Brand brand)
         {
             try
             {
-                // TODO: Add update logic here
+                Brand newBrand = db.Brands.Where(b => b.Id == id).FirstOrDefault();
+                newBrand.Name = brand.Name;
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -70,6 +76,8 @@ namespace MonashApp.Controllers
         // GET: Brand/Delete/5
         public ActionResult Delete(int id)
         {
+            Brand deleteBrand = db.Brands.Where(b => b.Id == id).FirstOrDefault();
+
             return View();
         }
 
