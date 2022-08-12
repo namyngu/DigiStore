@@ -217,7 +217,7 @@
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\CreditCard.cs" />
     <Compile Include="Models\CustomerReview.cs" />
-    <Compile Include="Models\DigiStoreDBContext.cs" />
+    <Compile Include="Models\DigiStoreModels.cs" />
     <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\HomeViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -233,6 +233,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DigiStoreDB.mdf" />
+    <Content Include="App_Data\DigiStoreDB_log.ldf">
+      <DependentUpon>DigiStoreDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -303,7 +307,6 @@
     <Content Include="Views\SubCategory\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Images\" />
     <Folder Include="UploadedFiles\" />
     <Folder Include="Views\Admin\" />
