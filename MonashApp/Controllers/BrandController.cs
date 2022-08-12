@@ -1,5 +1,4 @@
-﻿using MonashApp.Context;
-using MonashApp.Models;
+﻿using MonashApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace MonashApp.Controllers
 {
     public class BrandController : Controller
     {
-        DigiStoreDB db = new DigiStoreDB();
+        DigiStoreModels db = new DigiStoreModels();
 
         // GET: Brand
         public ActionResult Index()

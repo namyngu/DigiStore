@@ -1,4 +1,4 @@
-﻿using MonashApp.Context;
+﻿using MonashApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace MonashApp.Controllers
 {
     public class OrderController : Controller
     {
-        DigiStoreDB db = new DigiStoreDB();
+        DigiStoreModels db = new DigiStoreModels();
 
         // GET: Order
         public ActionResult Index()

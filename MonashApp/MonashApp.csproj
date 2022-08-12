@@ -206,11 +206,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202208110219378_init.cs" />
-    <Compile Include="Migrations\202208110219378_init.designer.cs">
-      <DependentUpon>202208110219378_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUsers_Admin.cs" />
     <Compile Include="Models\AspNetUsers_Customer.cs" />
@@ -233,11 +228,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-MonashApp-20220731105842.mdf" />
-    <Content Include="App_Data\aspnet-MonashApp-20220731105842_log.ldf">
-      <DependentUpon>aspnet-MonashApp-20220731105842.mdf</DependentUpon>
-    </Content>
-    <Content Include="App_Data\MonashApp.Context.DigiStoreDB.mdf" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -302,16 +292,17 @@
     <Content Include="Views\SubCategory\Index.cshtml" />
     <Content Include="Views\MainCategory\Index.cshtml" />
     <Content Include="Views\CustomerReview\Index.cshtml" />
-    <Content Include="Views\Brand\Index.cshtml" />
     <Content Include="Views\OrderDetail\Index.cshtml" />
     <Content Include="Views\Discount\Index.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Brand\Index.cshtml" />
+    <Content Include="Views\Brand\Details.cshtml" />
     <Content Include="Views\Brand\Create.cshtml" />
     <Content Include="Views\Brand\Edit.cshtml" />
-    <Content Include="Views\Brand\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Images\" />
     <Folder Include="UploadedFiles\" />
     <Folder Include="Views\Admin\" />
@@ -332,11 +323,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202208110219378_init.resx">
-      <DependentUpon>202208110219378_init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
