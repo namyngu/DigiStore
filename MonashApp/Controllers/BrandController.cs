@@ -9,7 +9,7 @@ namespace MonashApp.Controllers
 {
     public class BrandController : Controller
     {
-        DigiStoreModels db = new DigiStoreModels();
+        DigiStoreDBContext db = new DigiStoreDBContext();
 
         // GET: Brand
         public ActionResult Index()
@@ -20,7 +20,8 @@ namespace MonashApp.Controllers
         // GET: Brand/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var brand = db.Brands.Where(b => b.Id == id);
+            return View(brand);
         }
 
         // GET: Brand/Create
@@ -35,10 +36,17 @@ namespace MonashApp.Controllers
         {
             try
             {
-                db.Brands.Add(brand);
-                db.SaveChanges();
-
-                return RedirectToAction("Index");
+                if (!db.Brands.Any(b => b.Name == brand.Name))
+                {
+                    db.Brands.Add(brand);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Brand already exists!";
+                    return View(brand);
+                }
             }
             catch
             {

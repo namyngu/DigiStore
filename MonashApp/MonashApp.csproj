@@ -206,13 +206,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208121312556_init.cs" />
+    <Compile Include="Migrations\202208121312556_init.designer.cs">
+      <DependentUpon>202208121312556_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUsers_Admin.cs" />
     <Compile Include="Models\AspNetUsers_Customer.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\CreditCard.cs" />
     <Compile Include="Models\CustomerReview.cs" />
-    <Compile Include="Models\DigiStoreModels.cs" />
+    <Compile Include="Models\DigiStoreDBContext.cs" />
     <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\HomeViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -228,10 +233,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DigiStoreConnection2.mdf" />
-    <Content Include="App_Data\DigiStoreConnection2_log.ldf">
-      <DependentUpon>DigiStoreConnection2.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -292,24 +293,23 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Upload\UploadFile.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\SubCategory\Index.cshtml" />
-    <Content Include="Views\MainCategory\Index.cshtml" />
-    <Content Include="Views\CustomerReview\Index.cshtml" />
-    <Content Include="Views\OrderDetail\Index.cshtml" />
-    <Content Include="Views\Discount\Index.cshtml" />
-    <Content Include="Views\Order\Index.cshtml" />
-    <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Brand\Index.cshtml" />
     <Content Include="Views\Brand\Details.cshtml" />
     <Content Include="Views\Brand\Create.cshtml" />
-    <Content Include="Views\Brand\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Images\" />
     <Folder Include="UploadedFiles\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\AspNetUsers_Admin\" />
+    <Folder Include="Views\CustomerReview\" />
+    <Folder Include="Views\Discount\" />
+    <Folder Include="Views\MainCategory\" />
+    <Folder Include="Views\OrderDetail\" />
+    <Folder Include="Views\Order\" />
+    <Folder Include="Views\Product\" />
+    <Folder Include="Views\SubCategory\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -326,6 +326,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202208121312556_init.resx">
+      <DependentUpon>202208121312556_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
