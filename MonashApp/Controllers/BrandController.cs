@@ -37,7 +37,7 @@ namespace MonashApp.Controllers
             try
             {
                 //Check if brand already exists
-                if (!db.Brands.Any(b => b.Name == brand.Name))
+                if (!db.Brands.Any(b => b.Name.ToLower() == brand.Name.ToLower()))
                 {
                     db.Brands.Add(brand);
                     db.SaveChanges();

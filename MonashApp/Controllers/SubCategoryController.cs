@@ -9,7 +9,7 @@ namespace MonashApp.Controllers
 {
     public class SubCategoryController : Controller
     {
-        DigiStoreModels db = new DigiStoreModels();
+        DigiStoreDBContext db = new DigiStoreDBContext();
 
         // GET: SubCategory
         public ActionResult Index()
@@ -26,6 +26,7 @@ namespace MonashApp.Controllers
         // GET: SubCategory/Create
         public ActionResult Create()
         {
+
             return View();
         }
 

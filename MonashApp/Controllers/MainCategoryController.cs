@@ -9,7 +9,7 @@ namespace MonashApp.Controllers
 {
     public class MainCategoryController : Controller
     {
-        DigiStoreModels db = new DigiStoreModels();
+        DigiStoreDBContext db = new DigiStoreDBContext();
 
         // GET: MainCategory
         public ActionResult Index()
@@ -32,13 +32,22 @@ namespace MonashApp.Controllers
 
         // POST: MainCategory/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(MainCategory mainCategory)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                //Check if category already exists
+                if (!db.MainCategories.Any(m => m.Name.ToLower() == mainCategory.Name.ToLower()))
+                {
+                    db.MainCategories.Add(mainCategory);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Brand already exists!";
+                    return View(mainCategory);
+                }
             }
             catch
             {
@@ -49,18 +58,29 @@ namespace MonashApp.Controllers
         // GET: MainCategory/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var mainCategory = db.MainCategories.Where(m => m.Id == id).FirstOrDefault();
+            return View(mainCategory);
         }
 
         // POST: MainCategory/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, MainCategory category)
         {
             try
             {
-                // TODO: Add update logic here
+                if (!db.MainCategories.Any(cat => cat.Name == category.Name))
+                {
+                    MainCategory newCat = db.MainCategories.Where(cat => cat.Id == id).FirstOrDefault();
+                    newCat.Name = category.Name;
+                    db.SaveChanges();
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Brand already exists!";
+                    return View(category);
+                }
             }
             catch
             {
