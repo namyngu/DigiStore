@@ -36,6 +36,7 @@ namespace MonashApp.Controllers
         {
             try
             {
+                //Check if brand already exists
                 if (!db.Brands.Any(b => b.Name == brand.Name))
                 {
                     db.Brands.Add(brand);
@@ -68,11 +69,19 @@ namespace MonashApp.Controllers
         {
             try
             {
-                Brand newBrand = db.Brands.Where(b => b.Id == id).FirstOrDefault();
-                newBrand.Name = brand.Name;
-                db.SaveChanges();
+                if (!db.Brands.Any(b => b.Name == brand.Name))
+                {
+                    Brand newBrand = db.Brands.Where(b => b.Id == id).FirstOrDefault();
+                    newBrand.Name = brand.Name;
+                    db.SaveChanges();
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Brand already exists!";
+                    return View(brand);
+                }
             }
             catch
             {
@@ -83,12 +92,14 @@ namespace MonashApp.Controllers
         // GET: Brand/Delete/5
         public ActionResult Delete(int id)
         {
+            Brand brand = db.Brands.Where(b => b.Id == id).FirstOrDefault();
+            ViewBag.Name = brand.Name;
             return View();
         }
 
         // POST: Brand/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Brand brand)
         {
             try
             {
@@ -97,9 +108,9 @@ namespace MonashApp.Controllers
                                   where b.Id == id
                                   select b;
 
-                foreach (var brand in deleteBrand)
+                foreach (var br in deleteBrand)
                 {
-                    db.Brands.Remove(brand);
+                    db.Brands.Remove(br);
                 }
 
                 db.SaveChanges();
