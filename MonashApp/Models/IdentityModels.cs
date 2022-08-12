@@ -21,7 +21,7 @@ namespace MonashApp.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DigiStoreConnection2", throwIfV1Schema: false)
         {
         }
 
