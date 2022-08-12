@@ -9,7 +9,7 @@ namespace MonashApp.Controllers
 {
     public class DiscountController : Controller
     {
-        DiscountContext db = new DiscountContext();
+        DigiStoreDB db = new DigiStoreDB();
 
         // GET: Discount
         public ActionResult Index()

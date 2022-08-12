@@ -189,14 +189,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Context\BrandContext.cs" />
-    <Compile Include="Context\CustomerReviewContext.cs" />
-    <Compile Include="Context\DiscountContext.cs" />
-    <Compile Include="Context\MainCategoryContext.cs" />
-    <Compile Include="Context\OrderContext.cs" />
-    <Compile Include="Context\OrderDetailContext.cs" />
-    <Compile Include="Context\ProductContext.cs" />
-    <Compile Include="Context\SubCategoryContext.cs" />
+    <Compile Include="Context\DigiStoreDB.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BrandController.cs" />
@@ -244,6 +237,7 @@
     <Content Include="App_Data\aspnet-MonashApp-20220731105842_log.ldf">
       <DependentUpon>aspnet-MonashApp-20220731105842.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\MonashApp.Context.DigiStoreDB.mdf" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -315,6 +309,7 @@
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Brand\Create.cshtml" />
     <Content Include="Views\Brand\Edit.cshtml" />
+    <Content Include="Views\Brand\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
