@@ -1,4 +1,4 @@
-﻿using MonashApp.Context;
+﻿using MonashApp.Models;
 using MonashApp.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace MonashApp.Controllers
 {
     public class ProductController : Controller
     {
-        DigiStoreDB db = new DigiStoreDB();
+        DigiStoreModels db = new DigiStoreModels();
 
         // GET: Product
         public ActionResult Index()
@@ -27,7 +27,6 @@ namespace MonashApp.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
-            ProductContext db = new ProductContext();
             return View();
         }
 
