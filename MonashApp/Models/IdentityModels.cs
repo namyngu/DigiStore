@@ -18,16 +18,25 @@ namespace MonashApp.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class DigiStoreDBContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DigiStoreConnection2", throwIfV1Schema: false)
+        public DigiStoreDBContext()
+            : base("DigiStoreDBContext", throwIfV1Schema: false)
         {
         }
 
-        public static ApplicationDbContext Create()
+        public static DigiStoreDBContext Create()
         {
-            return new ApplicationDbContext();
+            return new DigiStoreDBContext();
         }
+
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<CustomerReview> CustomerReviews { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<MainCategory> MainCategories { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }
