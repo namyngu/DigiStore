@@ -9,7 +9,7 @@ namespace MonashApp.Controllers
 {
     public class MainCategoryController : Controller
     {
-        MainCategoryContext db = new MainCategoryContext();
+        DigiStoreDB db = new DigiStoreDB();
 
         // GET: MainCategory
         public ActionResult Index()
@@ -20,12 +20,13 @@ namespace MonashApp.Controllers
         // GET: MainCategory/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(db.MainCategories.Where(m => m.Id == id).FirstOrDefault());
         }
 
         // GET: MainCategory/Create
         public ActionResult Create()
         {
+
             return View();
         }
 

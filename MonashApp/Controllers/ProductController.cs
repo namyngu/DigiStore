@@ -10,7 +10,7 @@ namespace MonashApp.Controllers
 {
     public class ProductController : Controller
     {
-        ProductContext db = new ProductContext();
+        DigiStoreDB db = new DigiStoreDB();
 
         // GET: Product
         public ActionResult Index()

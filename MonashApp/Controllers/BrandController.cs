@@ -10,7 +10,7 @@ namespace MonashApp.Controllers
 {
     public class BrandController : Controller
     {
-        BrandContext db = new BrandContext();
+        DigiStoreDB db = new DigiStoreDB();
 
         // GET: Brand
         public ActionResult Index()
@@ -76,8 +76,6 @@ namespace MonashApp.Controllers
         // GET: Brand/Delete/5
         public ActionResult Delete(int id)
         {
-            Brand deleteBrand = db.Brands.Where(b => b.Id == id).FirstOrDefault();
-
             return View();
         }
 
@@ -87,7 +85,17 @@ namespace MonashApp.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                //Query database for rows to be deleted
+                var deleteBrand = from b in db.Brands
+                                  where b.Id == id
+                                  select b;
+
+                foreach (var brand in deleteBrand)
+                {
+                    db.Brands.Remove(brand);
+                }
+
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }

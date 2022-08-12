@@ -9,7 +9,7 @@ namespace MonashApp.Controllers
 {
     public class OrderController : Controller
     {
-        OrderContext db = new OrderContext();
+        DigiStoreDB db = new DigiStoreDB();
 
         // GET: Order
         public ActionResult Index()
