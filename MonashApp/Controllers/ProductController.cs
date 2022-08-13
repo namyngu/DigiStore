@@ -50,6 +50,17 @@ namespace MonashApp.Controllers
                 {
                     db.Products.Add(product);
                     db.SaveChanges();
+
+                    //Add ImageLink to product
+                    foreach (Product item in db.Products)
+                    {
+                        if (item.Name.ToLower().Equals(product.Name.ToLower()))
+                        {
+                            item.ImageLink = "~/Images/ProductImages/" + item.Id + ".jpg";
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+                    }
                     return RedirectToAction("Index");
                 }
                 else
