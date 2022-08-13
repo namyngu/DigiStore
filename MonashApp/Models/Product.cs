@@ -23,6 +23,8 @@ namespace MonashApp.Models
         [Required]
         public string Description { get; set; }
 
+        public string ImageLink { get; set; }
+
         public decimal BasePrice { get; set; }
 
         public int BrandId { get; set; }
