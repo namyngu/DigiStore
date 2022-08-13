@@ -36,15 +36,19 @@
              </div>
         </div>
     </div>
-    <div class="navbar">
+    <div class="navbar navbar-default">
         <div class="container">
-            <div class="navbar-collapse collapse">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navCollapse" title="more options">
+                    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navCollapse">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="@Url.Action("Index","Home")" class="navlinks">Category <i class="fa fa-caret-down "></i></a>
                         <div class="sub-menu-1">
                             <ul>
-                                <li><a href="#">Cables</a></li>
                                 <li><a href="#">Cases</a></li>
                                 <li><a href="#">Cooling</a></li>
                                 <li><a href="#">CPUs</a></li>
@@ -63,7 +67,7 @@
                     {
                         <li>@Html.ActionLink("Account", "Details", "Customers")</li>
 
-                        if (User.Identity.AuthenticationType.Equals("Admin"))
+                        if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
                             <li>@Html.ActionLink("Products", "Index", "Product")</li>
                         }
