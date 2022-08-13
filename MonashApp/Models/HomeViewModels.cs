@@ -6,6 +6,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MonashApp.Models
 {
+    public class HomeViewModel
+    {
+        public Product Product { get; set; }
+        public Brand Brand { get; set; }
+        public SubCategory SubCategory { get; set; }
+        public IEnumerable<Product> Products { get; set; }
+        public IEnumerable<Brand> Brands { get; set; }
+        public IEnumerable<SubCategory> SubCategories { get; set; }
+
+    }
     public class ContactViewModel
     {
         [Required]

@@ -1,4 +1,7 @@
-﻿@{
+﻿@model IEnumerable<MonashApp.Models.Product>
+<link href="~/Content/Home.css" rel="stylesheet" />
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -8,18 +11,18 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Product Listing</h2>
-        <p>
-            Placeholder Text
-        </p>
-    </div>
-    <div class="col-md-4">
-        <h2>Product Listing</h2>
-        <p>Placeholder Text</p>
-    </div>
-    <div class="col-md-4">
-        <h2>Product Listing</h2>
-        <p>Placeholder Text</p>
-    </div>
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4 productlist">
+            <a href="/Product/Details/@product.Id">
+                <img src="~/Images/ProductImages/@(product.Id).jpg" class="img-responsive list">
+                @product.Name
+                <br />
+                @if(User.Identity.IsAuthenticated)
+                {
+                    <strong>$@product.BasePrice</strong>
+                }
+            </a>
+        </div>
+    }
 </div>

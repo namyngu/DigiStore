@@ -5,7 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Product Details</h2>
+<h2>@Model.Name</h2>
+<img src="~/Images/ProductImages/@(Model.Id).jpg" class="img-responsive" width="300" height="200">
 
 <div>
     <hr />
@@ -88,6 +89,13 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Back to List", "Index")
+    }
+    @if (!User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Back to Home", "Index", "Home")
+    }
+
 </p>
