@@ -24,7 +24,7 @@ namespace MonashApp.Controllers
         [AllowAnonymous]
         public ActionResult Details(int id)
         {
-            var product = db.Products.Where(p => p.Id == id);
+            Product product = db.Products.Where(p => p.Id == id).FirstOrDefault();
             return View(product);
         }
 
@@ -52,15 +52,19 @@ namespace MonashApp.Controllers
                     db.SaveChanges();
 
                     //Add ImageLink to product
+                    Product newProduct = new Product();
+
                     foreach (Product item in db.Products)
                     {
                         if (item.Name.ToLower().Equals(product.Name.ToLower()))
                         {
-                            item.ImageLink = "~/Images/ProductImages/" + item.Id + ".jpg";
-                            db.SaveChanges();
-                            return RedirectToAction("Index");
+                            newProduct = item;
+                            break;
                         }
                     }
+                    newProduct.ImageLink = "~/Images/ProductImages/" + newProduct.Id + ".jpg";
+                    db.SaveChanges();
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -78,19 +82,30 @@ namespace MonashApp.Controllers
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Product product = db.Products.Where(p => p.Id == id).FirstOrDefault();
+            return View(product);
         }
 
         // POST: Product/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Product product)
         {
             try
             {
-                // TODO: Add update logic here
+                if (!db.Products.Any(p => p.Name == product.Name))
+                {
+                    Product newProduct = db.Products.Where(p => p.Id == id).FirstOrDefault();
+                    newProduct.Name = product.Name;
+                    db.SaveChanges();
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Product Name already exists!";
+                    return View(product);
+                }
             }
             catch
             {
@@ -101,17 +116,30 @@ namespace MonashApp.Controllers
         // GET: Product/Delete/5
         public ActionResult Delete(int id)
         {
+            Product product = db.Products.Where(p => p.Id == id).FirstOrDefault();
+            ViewBag.Name = product.Name;
             return View();
         }
 
         // POST: Product/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Product product)
         {
             try
             {
-                // TODO: Add delete logic here
+                //Query database for rows to be deleted
+                Product deleteProduct = db.Products.Where(p => p.Id == id).FirstOrDefault();
+
+                //Do not delete products if it's committed to a sales order, or if it's being purchased from supplier
+                if (deleteProduct.CommittedToOrder > 0 || deleteProduct.Backorder > 0)
+                {
+                    ViewBag.Error2 = "Error sales order or backorder is greater than 0.";
+                    return View(deleteProduct);
+                }
+
+                db.Products.Remove(deleteProduct);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }

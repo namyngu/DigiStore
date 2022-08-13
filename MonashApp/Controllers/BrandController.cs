@@ -85,7 +85,7 @@ namespace MonashApp.Controllers
                 }
                 else
                 {
-                    ViewBag.Error = "Brand already exists!";
+                    ViewBag.Error = "Brand Name already exists!";
                     return View(brand);
                 }
             }

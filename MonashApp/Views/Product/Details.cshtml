@@ -5,14 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Product Details</h2>
 
 <div>
-    <h4>Product</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Brand.Name)
+            Brand
         </dt>
 
         <dd>
@@ -20,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SubCategory.Name)
+            Category
         </dt>
 
         <dd>
@@ -28,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Product Name
         </dt>
 
         <dd>
@@ -36,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            Description
         </dt>
 
         <dd>
@@ -44,36 +43,39 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BasePrice)
+            Price
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.BasePrice)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OnHand)
-        </dt>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.OnHand)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.OnHand)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.OnHand)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CommittedToOrder)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CommittedToOrder)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CommittedToOrder)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CommittedToOrder)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Backorder)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Backorder)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Backorder)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Backorder)
+            </dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.Available)
