@@ -78,7 +78,7 @@ namespace MonashApp.Controllers
                 }
                 else
                 {
-                    ViewBag.Error = "Brand already exists!";
+                    ViewBag.Error = "Main Category already exists!";
                     return View(category);
                 }
             }

@@ -46,5 +46,11 @@ namespace MonashApp.Models
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
         public virtual SubCategory SubCategory { get; set; }
+
+        [NotMapped]
+        public List<Brand> Brands { get; set; }
+
+        [NotMapped]
+        public List<SubCategory> SubCategories { get; set; }
     }
 }

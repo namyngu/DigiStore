@@ -21,13 +21,18 @@ namespace MonashApp.Controllers
         // GET: Product/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var product = db.Products.Where(p => p.Id == id);
+            return View(product);
         }
 
         // GET: Product/Create
         public ActionResult Create()
         {
-            return View();
+            Product viewModel = new Product();
+            viewModel.Brands = db.Brands.ToList();
+            viewModel.SubCategories = db.SubCategories.ToList();
+
+            return View(viewModel);
         }
 
         // POST: Product/Create
@@ -36,10 +41,18 @@ namespace MonashApp.Controllers
         {
             try
             {
-                db.Products.Add(product);
-                db.SaveChanges();
-
-                return RedirectToAction("Index");
+                //Check if product already exists
+                if (!db.Products.Any(b => b.Name.ToLower() == product.Name.ToLower()))
+                {
+                    db.Products.Add(product);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Product already exists!";
+                    return View(product);
+                };
             }
             catch
             {
@@ -89,6 +102,28 @@ namespace MonashApp.Controllers
             {
                 return View();
             }
+        }
+
+        //Method to get all brands from database
+        private List<Brand> GetBrands()
+        {
+            List<Brand> brands = new List<Brand>();
+            foreach (Brand item in db.Brands)
+            {
+                brands.Add(item);
+            }
+            return brands;
+        }
+
+        //Method to get all SubCategories from database
+        private List<SubCategory> GetSubCategories()
+        {
+            List<SubCategory> subCategories = new List<SubCategory>();
+            foreach (SubCategory item in db.SubCategories)
+            {
+                subCategories.Add(item);
+            }
+            return subCategories;
         }
     }
 }
