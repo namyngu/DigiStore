@@ -63,7 +63,7 @@
                     {
                         <li>@Html.ActionLink("Account", "Details", "Customers")</li>
 
-                        if (User.Identity.AuthenticationType.Equals("admin"))
+                        if (User.Identity.AuthenticationType.Equals("Admin"))
                         {
                             <li>@Html.ActionLink("Products", "Index", "Product")</li>
                         }

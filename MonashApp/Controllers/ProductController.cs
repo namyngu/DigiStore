@@ -11,6 +11,7 @@ namespace MonashApp.Controllers
     [Authorize]
     public class ProductController : Controller
     {
+
         DigiStoreDBContext db = new DigiStoreDBContext();
 
         // GET: Product
@@ -29,6 +30,7 @@ namespace MonashApp.Controllers
         }
 
         // GET: Product/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             Product viewModel = new Product();
@@ -40,6 +42,7 @@ namespace MonashApp.Controllers
 
         // POST: Product/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Product product)
         {
@@ -80,6 +83,7 @@ namespace MonashApp.Controllers
         }
 
         // GET: Product/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             Product product = db.Products.Where(p => p.Id == id).FirstOrDefault();
@@ -88,6 +92,7 @@ namespace MonashApp.Controllers
 
         // POST: Product/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Product product)
         {
@@ -114,6 +119,7 @@ namespace MonashApp.Controllers
         }
 
         // GET: Product/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             Product product = db.Products.Where(p => p.Id == id).FirstOrDefault();
@@ -123,6 +129,7 @@ namespace MonashApp.Controllers
 
         // POST: Product/Delete/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, Product product)
         {

@@ -50,7 +50,7 @@
             @Html.DisplayFor(model => model.BasePrice)
         </dd>
 
-        @if (User.Identity.IsAuthenticated)
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
         {
             <dt>
                 @Html.DisplayNameFor(model => model.OnHand)
