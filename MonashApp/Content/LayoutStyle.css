@@ -66,13 +66,12 @@ ul.searchbar {
     list-style: none;
 }
 
-.navbar-collapse{
+.navbar-collapse {
     padding-left: 0;
     padding-right: 0;
     margin-left: 0;
     margin-right: 0;
-
-    background: white;
+    background: #f9f9f9;
 }
 
 .navbar .fa {

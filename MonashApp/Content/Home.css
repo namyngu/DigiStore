@@ -1,6 +1,7 @@
 ﻿img.list {
     width: 100%;
-    max-width: 200px
+    height: 100%;
+    max-width: 200px;
 }
 
 .col-md-4.productlist {
