@@ -7,6 +7,8 @@ using System.Web.Mvc;
 
 namespace MonashApp.Controllers
 {
+    [Authorize]
+    [RequireHttps]
     public class MainCategoryController : Controller
     {
         DigiStoreDBContext db = new DigiStoreDBContext();
@@ -32,6 +34,7 @@ namespace MonashApp.Controllers
 
         // POST: MainCategory/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(MainCategory mainCategory)
         {
             try
@@ -64,6 +67,7 @@ namespace MonashApp.Controllers
 
         // POST: MainCategory/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, MainCategory category)
         {
             try
@@ -96,6 +100,7 @@ namespace MonashApp.Controllers
 
         // POST: MainCategory/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

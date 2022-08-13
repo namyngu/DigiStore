@@ -2,11 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace MonashApp.Controllers
 {
+    [Authorize]
+    [RequireHttps]
     public class BrandController : Controller
     {
         DigiStoreDBContext db = new DigiStoreDBContext();
@@ -32,7 +35,9 @@ namespace MonashApp.Controllers
 
         // POST: Brand/Create
         [HttpPost]
-        public ActionResult Create(Brand brand)
+        [ValidateAntiForgeryToken]
+
+        public  ActionResult Create(Brand brand)
         {
             try
             {
@@ -65,6 +70,7 @@ namespace MonashApp.Controllers
 
         // POST: Brand/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Brand brand)
         {
             try
@@ -99,6 +105,7 @@ namespace MonashApp.Controllers
 
         // POST: Brand/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, Brand brand)
         {
             try
