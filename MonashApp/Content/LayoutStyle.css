@@ -84,7 +84,7 @@ a
     color: black;
 }
 
-.nav > li > a:hover {
+div > ul > li:hover {
     background: #f58e90;
     border-radius: 3px;
 }
