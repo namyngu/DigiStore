@@ -65,7 +65,7 @@ namespace MonashApp.Controllers
                             break;
                         }
                     }
-                    newProduct.ImageLink = "~/Images/ProductImages/" + newProduct.Id + ".jpg";
+                    newProduct.ImageLink = "Images/ProductImages/" + newProduct.Id + ".jpg";
                     db.SaveChanges();
 
                     return RedirectToAction("Index");

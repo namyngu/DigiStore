@@ -14,9 +14,11 @@ namespace MonashApp.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
+        DigiStoreDBContext db = new DigiStoreDBContext();
         public ActionResult Index()
         {
-            return View();
+            HomeViewModel model = new HomeViewModel(); 
+            return View(db.Products.ToList());
         }
 
         public ActionResult About()
