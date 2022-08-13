@@ -1,5 +1,4 @@
 ﻿using MonashApp.Models;
-using MonashApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +7,21 @@ using System.Web.Mvc;
 
 namespace MonashApp.Controllers
 {
+    [RequireHttps]
+    [Authorize]
     public class ProductController : Controller
     {
         DigiStoreDBContext db = new DigiStoreDBContext();
 
         // GET: Product
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Products.ToList());
         }
 
         // GET: Product/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int id)
         {
             var product = db.Products.Where(p => p.Id == id);
@@ -37,6 +40,7 @@ namespace MonashApp.Controllers
 
         // POST: Product/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Product product)
         {
             try
@@ -68,6 +72,7 @@ namespace MonashApp.Controllers
 
         // POST: Product/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -90,6 +95,7 @@ namespace MonashApp.Controllers
 
         // POST: Product/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

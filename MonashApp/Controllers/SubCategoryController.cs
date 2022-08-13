@@ -7,17 +7,21 @@ using System.Web.Mvc;
 
 namespace MonashApp.Controllers
 {
+    [RequireHttps]
+    [Authorize]
     public class SubCategoryController : Controller
     {
         DigiStoreDBContext db = new DigiStoreDBContext();
 
         // GET: SubCategory
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.SubCategories.ToList());
         }
 
         // GET: SubCategory/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int id)
         {
             return View();
@@ -32,6 +36,7 @@ namespace MonashApp.Controllers
 
         // POST: SubCategory/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(FormCollection collection)
         {
             try
@@ -55,6 +60,7 @@ namespace MonashApp.Controllers
 
         // POST: SubCategory/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, SubCategory category)
         {
             try
@@ -87,6 +93,7 @@ namespace MonashApp.Controllers
 
         // POST: SubCategory/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
