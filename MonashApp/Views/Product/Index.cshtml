@@ -24,18 +24,24 @@
         <th>
             Description
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.BasePrice)
+            Price
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OnHand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CommittedToOrder)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Backorder)
-        </th>
+
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.OnHand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommittedToOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Backorder)
+            </th>
+        }
+
         <th>
             @Html.DisplayNameFor(model => model.Available)
         </th>
@@ -59,21 +65,25 @@
         <td>
             @Html.DisplayFor(modelItem => item.BasePrice)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OnHand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CommittedToOrder)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Backorder)
-        </td>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.OnHand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommittedToOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Backorder)
+            </td>
+        }
+
         <td>
             @Html.DisplayFor(modelItem => item.Available)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.Id })
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
 }
