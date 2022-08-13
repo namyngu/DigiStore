@@ -49,18 +49,29 @@ namespace MonashApp.Controllers
         // GET: SubCategory/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var subCategory = db.SubCategories.Where(sub => sub.Id == id).FirstOrDefault();
+            return View(subCategory);
         }
 
         // POST: SubCategory/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, SubCategory category)
         {
             try
             {
-                // TODO: Add update logic here
+                if (!db.SubCategories.Any(cat => cat.Name == category.Name))
+                {
+                    SubCategory newCat = db.SubCategories.Where(cat => cat.Id == id).FirstOrDefault();
+                    newCat.Name = category.Name;
+                    db.SaveChanges();
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Sub Category already exists!";
+                    return View(category);
+                }
             }
             catch
             {

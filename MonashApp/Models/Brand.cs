@@ -14,6 +14,7 @@ namespace MonashApp.Models
             Products = new HashSet<Product>();
         }
 
+        [Key]
         public int Id { get; set; }
 
         [Required]

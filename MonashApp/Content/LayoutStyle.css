@@ -4,6 +4,10 @@
     color: black;
 }
 
+span.error-msg{
+    color: red;
+}
+
 .row
 {
     margin-top: 0;
