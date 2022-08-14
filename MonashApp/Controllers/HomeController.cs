@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using MonashApp.Models;
-
+using Microsoft.AspNet.Identity;
 
 namespace MonashApp.Controllers
 {
@@ -17,7 +17,9 @@ namespace MonashApp.Controllers
         DigiStoreDBContext db = new DigiStoreDBContext();
         public ActionResult Index()
         {
-            HomeViewModel model = new HomeViewModel(); 
+            HomeViewModel model = new HomeViewModel();
+            ViewBag.userId = User.Identity.GetUserId();
+
             return View(db.Products.ToList());
         }
 

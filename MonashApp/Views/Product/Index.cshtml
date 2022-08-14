@@ -7,85 +7,62 @@
 
 <h2>Product List</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Brand
-        </th>
-        <th>
-            Sub Category
-        </th>
-        <th>
-            Product Name
-        </th>
-        <th>
-            Description
-        </th>
-
-        <th>
-            Price
-        </th>
-
-        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-        {
-            <th>
-                @Html.DisplayNameFor(model => model.OnHand)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CommittedToOrder)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Backorder)
-            </th>
-        }
-
-        <th>
-            @Html.DisplayNameFor(model => model.Available)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brand.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubCategory.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BasePrice)
-        </td>
-        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-        {
-            <td>
-                @Html.DisplayFor(modelItem => item.OnHand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CommittedToOrder)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Backorder)
-            </td>
-        }
-
-        <td>
-            @Html.DisplayFor(modelItem => item.Available)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.Id })
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <p>@Html.ActionLink("Create New", "Create")</p>
 }
 
+
+<table id="productTable" class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Sub Category</th>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <th>@Html.DisplayNameFor(model => model.OnHand)</th>
+                <th>@Html.DisplayNameFor(model => model.CommittedToOrder)</th>
+                <th>@Html.DisplayNameFor(model => model.Backorder)</th>
+            }
+
+            <th>Available</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Brand.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.SubCategory.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.BasePrice)</td>
+
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <td>@Html.DisplayFor(modelItem => item.OnHand)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CommittedToOrder)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Backorder)</td>
+                }
+
+                <td>@Html.DisplayFor(modelItem => item.Available)</td>
+
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#productTable').DataTable();
+        });
+    </script>
+}

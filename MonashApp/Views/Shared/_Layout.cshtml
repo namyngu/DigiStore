@@ -4,10 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - DigiStore Application</title>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
     <link href="~/Content/LayoutStyle.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+
 
 </head>
 <body>
@@ -63,14 +67,11 @@
                     </li>
                     <li><a href="@Url.Action("Contact","Home")" class="navlinks">Contact Us<i class="fa fa-phone"></i></a></li>
                     <li><a href="@Url.Action("Index","Home")" class="navlinks"><i class="fa fa-shopping-cart"></i></a></li>
+
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Account", "Details", "Customers")</li>
-
-                        if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                        {
-                            <li>@Html.ActionLink("Products", "Index", "Product")</li>
-                        }
+                        <li>@Html.ActionLink("Product List", "Index", "Product")</li>
+                        <li>@Html.ActionLink("My Orders", "Index", "Order", new { id = ViewBag.userId }, null)</li>
 
                     }
                 </ul>
@@ -85,10 +86,13 @@
             <p>&copy; @DateTime.Now.Year - DigiStore Application</p>
         </footer>
     </div>
-    
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
     @RenderSection("scripts", required: false)
 </body>
+@ViewBag.userId
 </html>

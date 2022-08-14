@@ -7,14 +7,17 @@ using System.Web.Mvc;
 
 namespace MonashApp.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         DigiStoreDBContext db = new DigiStoreDBContext();
 
+
         // GET: Order
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            return View(db.Orders.ToList());
+            //Return only the user's order
+            return View(db.Orders.Where(m => m.AspNetUserId == id).ToList());
         }
 
         // GET: Order/Details/5
