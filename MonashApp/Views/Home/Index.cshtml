@@ -6,20 +6,45 @@
 }
 
 <div class="jumbotron">
+    
     <h1>Welcome to DigiStore!</h1>
-    <p class="lead">Placeholder Text.</p>
 </div>
 
-<div class="row-body">
-    @foreach (var product in Model)
-    {
-        <div class="col-md-4 productlist">
-            <a href="/Product/Details/@product.Id">
-                <img src="~/Images/ProductImages/@(product.Id).jpg" class="img-responsive list">
-                @product.Name
-                <br />
-                <strong>$@product.BasePrice</strong>
-            </a>
-        </div>
-    }
-</div>
+<table id="productTable" class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Model</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/Product/Details/@product.Id">
+                        <img src="~/Images/ProductImages/@(product.Id).jpg" class="img-responsive list">
+                    </a>
+                </td>
+                <td>
+                    <a href="/Product/Details/@product.Id">
+                        @product.Name
+                    </a>
+                </td>
+                <td>
+                    @product.BasePrice
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#productTable').DataTable();
+        });
+    </script>
+}
+
