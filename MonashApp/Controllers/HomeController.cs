@@ -47,20 +47,6 @@ namespace MonashApp.Controllers
             return View(cartList.ToList());
         }
 
-        //POST: Add item to cart
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddCart(int id)
-        {
-            if(ModelState.IsValid)
-            {
-                Product newItem = db.Products.Find(id);
-                cartList.Add(newItem);
-            }
-            return View("Index", "Home");
-        }
-
         //GET: Home/Contact
         public ActionResult Contact()
         {

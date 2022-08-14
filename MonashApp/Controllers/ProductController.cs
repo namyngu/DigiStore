@@ -21,15 +21,6 @@ namespace MonashApp.Controllers
             return View(db.Products.ToList());
         }
 
-        public ActionResult GetList()
-        {
-            using (DigiStoreDBContext db = new DigiStoreDBContext())
-            {
-                var prodList = db.Products.ToList<Product>();
-                return Json(new { data = prodList }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
         // GET: Product/Details/5
         [AllowAnonymous]
         public ActionResult Details(int id)
