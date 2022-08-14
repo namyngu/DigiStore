@@ -16,6 +16,7 @@
             <th>Image</th>
             <th>Model</th>
             <th>Price</th>
+            <th>Cart</th>
         </tr>
     </thead>
     <tbody>
@@ -34,6 +35,14 @@
                 </td>
                 <td>
                     @product.BasePrice
+                </td>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="productId" name="productId" value=@product.Id>
+                        <input type="submit" value="Add Cart" class="btn btn-default" />
+                    }
                 </td>
             </tr>
         }
