@@ -11,3 +11,7 @@ img.list {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+img.img-responsive.list {
+    max-width: 40%;
+}
