@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MonashApp.Models.Product>
+
+
+@{
+    ViewBag.Title = "ViewCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewCart</h2>
+
+<table id="itemTable" class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Product Name</th>
+            <th>Unit Price</th>
+            <th>Delete?</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/Images/ProductImages/@(product.Id).jpg" class="img-responsive list">
+                </td>
+                <td>@product.Name</td>
+                <td>@product.BasePrice</td>
+                <td>
+                    <button onclick="deleteFunction()"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3><button type="submit" class="btn-default"> Place Order!</button></h3>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#itemTable').DataTable();
+        });
+    </script>
+}

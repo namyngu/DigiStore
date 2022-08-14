@@ -15,6 +15,10 @@ namespace MonashApp.Controllers
     public class HomeController : Controller
     {
         DigiStoreDBContext db = new DigiStoreDBContext();
+
+        List<Product> cartList = new List<Product>();
+
+
         public ActionResult Index()
         {
             HomeViewModel model = new HomeViewModel();
@@ -23,11 +27,38 @@ namespace MonashApp.Controllers
             return View(db.Products.ToList());
         }
 
-        public ActionResult About()
+        //POST: Add product to cart
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Index(int productId)
         {
-            ViewBag.Message = "Your application description page.";
+            Product newItem = db.Products.Find(productId);
+            cartList.Add(newItem);
 
-            return View();
+            return View(db.Products.ToList());
+        }
+
+
+        //GET: View cart
+        [AllowAnonymous]
+        public ActionResult ViewCart()
+        {
+            return View(cartList.ToList());
+        }
+
+        //POST: Add item to cart
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCart(int id)
+        {
+            if(ModelState.IsValid)
+            {
+                Product newItem = db.Products.Find(id);
+                cartList.Add(newItem);
+            }
+            return View("Index", "Home");
         }
 
         //GET: Home/Contact

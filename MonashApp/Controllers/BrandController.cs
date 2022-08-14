@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace MonashApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     [RequireHttps]
     public class BrandController : Controller
     {
