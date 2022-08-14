@@ -315,6 +315,9 @@
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\OrderDetail\Index.cshtml" />
+    <Content Include="Views\Order\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
@@ -323,7 +326,6 @@
     <Folder Include="Views\AspNetUsers_Admin\" />
     <Folder Include="Views\CustomerReview\" />
     <Folder Include="Views\Discount\" />
-    <Folder Include="Views\OrderDetail\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
