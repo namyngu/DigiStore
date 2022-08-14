@@ -326,6 +326,7 @@
     <Folder Include="Views\AspNetUsers_Admin\" />
     <Folder Include="Views\CustomerReview\" />
     <Folder Include="Views\Discount\" />
+    <Folder Include="Views\SearchBar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

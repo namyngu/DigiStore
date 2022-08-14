@@ -1,74 +1,174 @@
 ﻿@model MonashApp.Models.ContactViewModel
 
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css" rel="stylesheet">
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+
 @{
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/Contact.css" rel="stylesheet" />
 
-<h2>Contact Us!</h2>
+<div class="row-form col-xs-12">
+    <h2>Contact Us!</h2>
 
-@using (Html.BeginForm()) 
-{
+    <h4><i class="fa fa-phone"></i> (03) 9100 7777</h4>
+    <p>Cnr LaTrobe and Swanston Streets, Melbourne VIC 3000</p>
+
+    <div class="col-xs-12 col-md-12" id="maptest">
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoibmFteW5ndSIsImEiOiJjbDZ0NjlsazUweGFjM2RsamZ3N2U2d250In0.xSV6VzpO7VNfyhgatOfo_Q';
+            const map = new mapboxgl.Map({
+                container: 'maptest',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [144.962768, -37.810246],
+                zoom: 13
+            });
+
+            /* Given a query in the form "lng, lat" or "lat, lng"
+             * returns the matching geographic coordinate(s)
+             * as search results in carmen geojson format,
+             * https://github.com/mapbox/carmen/blob/master/carmen-geojson.md */
+            const coordinatesGeocoder = function (query) {
+                // Match anything which looks like
+                // decimal degrees coordinate pair.
+                const matches = query.match(
+                    /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
+                );
+                if (!matches) {
+                    return null;
+                }
+
+                function coordinateFeature(lng, lat) {
+                    return {
+                        center: [lng, lat],
+                        geometry: {
+                            type: 'Point',
+                            coordinates: [lng, lat]
+                        },
+                        place_name: 'Lat: ' + lat + ' Lng: ' + lng,
+                        place_type: ['coordinate'],
+                        properties: {},
+                        type: 'Feature'
+                    };
+                }
+
+                const coord1 = Number(matches[1]);
+                const coord2 = Number(matches[2]);
+                const geocodes = [];
+
+                if (coord1 < -90 || coord1 > 90) {
+                    // must be lng, lat
+                    geocodes.push(coordinateFeature(coord1, coord2));
+                }
+
+                if (coord2 < -90 || coord2 > 90) {
+                    // must be lat, lng
+                    geocodes.push(coordinateFeature(coord2, coord1));
+                }
+
+                if (geocodes.length === 0) {
+                    // else could be either lng, lat or lat, lng
+                    geocodes.push(coordinateFeature(coord1, coord2));
+                    geocodes.push(coordinateFeature(coord2, coord1));
+                }
+
+                return geocodes;
+            };
+
+            // Add the control to the map.
+            map.addControl(
+                new MapboxGeocoder({
+                    accessToken: mapboxgl.accessToken,
+                    localGeocoder: coordinatesGeocoder,
+                    zoom: 15,
+                    placeholder: 'DigiStore',
+                    mapboxgl: mapboxgl,
+                    reverseGeocode: true
+                })
+            );
+
+            // Create a default Marker and add it to the map.
+            const marker1 = new mapboxgl.Marker()
+                .setLngLat([144.962768, -37.810246])
+                .addTo(map);
+
+            //Add fullscreen to map
+            map.addControl(new mapboxgl.FullscreenControl());
+
+        </script>
+    </div>
+
+</div>
+
+<div class="col-xs-12 col-md-12">
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
-    
-<div class="emailForm">
-    <h4>Send us an email!</h4>
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-input">
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-        </div>
-    </div>
+        <div class="emailForm">
+            <h4>Send us an email!</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-input">
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your email" } })
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <div class="form-input">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="form-input">
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @placeholder = "Subject" } })
-            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <div class="form-input">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your email" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="form-input">
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control"}, @placeholder = "Message..." })
-            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <div class="form-input">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @placeholder = "Subject" } })
+                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="form-input">
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.File, new { type = "file", multiple = "multiple" })
-            @Html.ValidationMessageFor(model => model.File, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <div class="form-input">
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Message..." })
+                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Send" class="sendButton" onclick="msgFunction()" />
+            <div class="form-input">
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.File, new { type = "file", multiple = "multiple" })
+                    @Html.ValidationMessageFor(model => model.File, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Send" class="sendButton" onclick="msgFunction()" />
+            </div>
         </div>
-    </div>
+    }
 </div>
-}
 
-<div>
-    @Html.ActionLink("Back to Home", "Index")
-</div>
+@Html.ActionLink("Back to Home", "Index")
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        function msgFunction() {
+            $.notify("Email sent!", "info");
+        }
+    </script>
+    <script src="~/Scripts/notify.min.js" defer></script>
+
 }
-<script src="~/Scripts/notify.min.js" defer></script>
-<script>
-    function msgFunction() {
-        $.notify("Email sent!", "info");
-    }
-</script>
+
+
