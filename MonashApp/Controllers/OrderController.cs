@@ -1,4 +1,5 @@
-﻿using MonashApp.Models;
+﻿using Microsoft.AspNet.Identity;
+using MonashApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,18 @@ namespace MonashApp.Controllers
         }
 
         // GET: Order/Details/5
-        public ActionResult Details(int id)
+        //Display items for that order.
+        public ActionResult Details(int orderId)
         {
-            return View();
+            return View(db.OrderDetails.Where(m => m.OrderId == orderId).ToList());
         }
 
         // GET: Order/Create
+        //Shows shopping cart list - same concept
         public ActionResult Create()
         {
+            //pass user ID into view if user is logged in.
+            ViewBag.UserId = User.Identity.GetUserId();
             return View();
         }
 

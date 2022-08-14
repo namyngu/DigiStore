@@ -12,15 +12,10 @@ namespace MonashApp.Controllers
         DigiStoreDBContext db = new DigiStoreDBContext();
 
         // GET: OrderDetail
-        public ActionResult Index()
+        //Display items for that order
+        public ActionResult Index(int orderId)
         {
-            return View(db.OrderDetails.ToList());
-        }
-
-        // GET: OrderDetail/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+            return View(db.OrderDetails.Where(m => m.OrderId == orderId).ToList());
         }
 
         // GET: OrderDetail/Create
