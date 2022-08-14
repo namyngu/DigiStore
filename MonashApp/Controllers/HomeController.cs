@@ -16,9 +16,6 @@ namespace MonashApp.Controllers
     {
         DigiStoreDBContext db = new DigiStoreDBContext();
 
-        List<Product> cartList = new List<Product>();
-
-
         public ActionResult Index()
         {
             HomeViewModel model = new HomeViewModel();
@@ -34,9 +31,36 @@ namespace MonashApp.Controllers
         public ActionResult Index(int productId)
         {
             Product newItem = db.Products.Find(productId);
-            cartList.Add(newItem);
+            Startup.ShoppingCart.Add(newItem);
 
             return View(db.Products.ToList());
+        }
+
+        //POST: Home/Index - method to display items in their categories.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Index(string mainCategory)
+        {
+            //Get main category from name
+            MainCategory category = db.MainCategories.Where(cat => cat.Name == mainCategory).FirstOrDefault();
+            List<SubCategory> subcategories = new List<SubCategory>();
+            subcategories = category.SubCategories.ToList();
+
+            List<Product> filterItems = new List<Product>();
+
+            foreach (SubCategory cat in subcategories)
+            {
+                foreach (Product product in db.Products)
+                {
+                    if (product.SubCategoryId == cat.Id)
+                    {
+                        filterItems.Add(product);
+                    }
+                }
+            }
+
+            return View(filterItems.ToList());
         }
 
 
@@ -44,7 +68,7 @@ namespace MonashApp.Controllers
         [AllowAnonymous]
         public ActionResult ViewCart()
         {
-            return View(cartList.ToList());
+            return View(Startup.ShoppingCart);
         }
 
         //GET: Home/Contact
