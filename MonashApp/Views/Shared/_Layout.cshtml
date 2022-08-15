@@ -49,6 +49,7 @@
             </div>
             <div class="navbar-collapse collapse" id="navCollapse">
                 <ul class="nav navbar-nav">
+                    <li><a href="@Url.Action("Index","Home")" class="navlinks">Home<i class="fa fa-home"></i></a></li>
                     <li>
                         <a href="@Url.Action("Index","Home")" class="navlinks">Category <i class="fa fa-caret-down "></i></a>
                         <div class="sub-menu-1">
@@ -70,13 +71,12 @@
 
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Product List", "Index", "Product")</li>
                         <li>@Html.ActionLink("My Orders", "Index", "Order", new { id = ViewBag.userId }, null)</li>
 
-                        if(User.IsInRole("Admin"))
-                            {
-                                <li>@Html.ActionLink("Brands", "Index", "Brand")</li>
-                            }
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Brands", "Index", "Brand")</li>
+                        }
 
                     }
                 </ul>
