@@ -29,7 +29,6 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.OrderDate, "Order Date", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <input id="ShipDate" name="ShipDate" value=@ViewBag.Date type ="hidden">
             @Html.ValidationMessageFor(model => model.OrderDate, "", new { @class = "text-danger" })
