@@ -19,6 +19,9 @@ namespace MonashApp.Models
         [Required]
         public string OrderStatus { get; set; }
 
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime OrderDate { get; set; }
 
         [Required]
@@ -34,7 +37,6 @@ namespace MonashApp.Models
 
         public DateTime ShipDate { get; set; }
 
-        [Required]
         [StringLength(128)]
         public string AspNetUserId { get; set; }
 

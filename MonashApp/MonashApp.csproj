@@ -316,9 +316,9 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\Details.cshtml" />
     <Content Include="Views\OrderDetail\Index.cshtml" />
-    <Content Include="Views\Order\Create.cshtml" />
     <Content Include="Views\Home\ViewCart.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Order\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

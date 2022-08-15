@@ -35,7 +35,8 @@ namespace MonashApp.Controllers
 
             return View(db.Products.ToList());
         }
-
+           
+        /*
         //POST: Home/Index - method to display items in their categories.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -62,7 +63,7 @@ namespace MonashApp.Controllers
 
             return View(filterItems.ToList());
         }
-
+        */
 
         //GET: View cart
         [AllowAnonymous]
