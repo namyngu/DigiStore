@@ -35,8 +35,9 @@
     </tbody>
 </table>
 
-<h3><button type="submit" class="btn-default"> Place Order!</button></h3>
-
+<a href="@Url.Action("Create","Order")">
+    <h3><button type="button" class="btn-default"> Place Order!</button></h3>
+</a>
 @section scripts{
     <script>
         $(document).ready(function () {
