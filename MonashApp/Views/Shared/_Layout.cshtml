@@ -71,10 +71,12 @@
 
                     @if (User.Identity.IsAuthenticated)
                     {
+
                         <li>@Html.ActionLink("My Orders", "Index", "Order", new { id = ViewBag.userId }, null)</li>
 
                         if (User.IsInRole("Admin"))
                         {
+                            <li>@Html.ActionLink("Product List", "Index", "Product")</li>
                             <li>@Html.ActionLink("Brands", "Index", "Brand")</li>
                         }
 
