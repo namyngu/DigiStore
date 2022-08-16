@@ -28,7 +28,14 @@
                 <td>@product.Name</td>
                 <td>@product.BasePrice</td>
                 <td>
-                    <button onclick="deleteFunction()"><i class="fa fa-trash"></i></button>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="productId" name="productId" value=@product.Id>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-trash"></i>    
+                        </button>
+                    }
                 </td>
             </tr>
         }
