@@ -65,10 +65,26 @@ namespace MonashApp.Controllers
         }
         */
 
-        //GET: View cart
+        //GET: Home/ViewCart
         [AllowAnonymous]
         public ActionResult ViewCart()
         {
+            return View(Startup.ShoppingCart);
+        }
+
+        //Method to delete item from cart
+        //POST: Home/ViewCart
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ViewCart(int productId)
+        {
+            if (ModelState.IsValid)
+            {
+                Product product = Startup.ShoppingCart.Find(p => p.Id == productId);
+                Startup.ShoppingCart.Remove(product);
+            }
+
             return View(Startup.ShoppingCart);
         }
 
