@@ -118,7 +118,7 @@ namespace MonashApp.Controllers
         //Method to send email using SendGrid
         public async Task SendMail(string name, string fromEmail, string emailSubject, string message, HttpPostedFileBase file)
         {
-            var apiKey = "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";
+            var apiKey = "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";
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(fromEmail, name);
             var subject = emailSubject;
