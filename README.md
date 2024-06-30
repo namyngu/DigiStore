@@ -1,5 +1,5 @@
 # DigiStore
-This is my mock website for an e-commerce store selling computer parts
+This is my first mock website for an e-commerce store selling computer parts for learning purposes.
 I've premade two accounts below for demo purposes -
 
 Admin User login details
