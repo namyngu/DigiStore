@@ -1,4 +1,6 @@
-# MonashApp
+# DigiStore
+This is my mock website for an e-commerce store selling computer parts
+I've premade two accounts below for demo purposes -
 
 Admin User login details
 Username: admin@gmail.com
