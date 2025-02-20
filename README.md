@@ -1,4 +1,4 @@
-# DigiStore
+# DigiStore on Visual Studio
 This is my first mock website for an e-commerce store selling computer parts for learning purposes.
 I've pre-made two accounts below for demo purposes
 
