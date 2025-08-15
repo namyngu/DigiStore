@@ -12,4 +12,5 @@ Customer user login
 Username: demo@gmail.com
 password: Potato1!
 
-<p><b>NOTE:</b> All passwords for all users are currently set to Potato1!</p>
+<h2>This is the Entity Relationship Diagram</h2>
+
