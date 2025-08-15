@@ -1,12 +1,12 @@
 # DigiStore
-This is my first mock website for an e-commerce store selling computer parts for learning purposes.
-I've pre-made two accounts below for demo purposes.
+<p>This is my first mock website for an e-commerce store selling computer parts for learning purposes.
+I've pre-made two accounts below for demo purposes.</p>
 
-The website can only be run on Visual Studio at the moment.
+<p>The website can only be run on Visual Studio at the moment.</p>
 
-Admin User login details
+<p>Admin User (Store Owner) login details
 Username: admin@gmail.com
-password: Potato1!
+password: Potato1! </p>
 
 
 Customer user login
