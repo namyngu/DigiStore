@@ -12,4 +12,4 @@ Customer user login
 Username: demo@gmail.com
 password: Potato1!
 
-<p>NOTE: All passwords for all users are currently set to Potato1!</p>
+<p><b>NOTE:</b> All passwords for all users are currently set to Potato1!</p>
